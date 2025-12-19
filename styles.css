@@ -1,0 +1,684 @@
+:root {
+    --primary-red: #E50914;
+    /* Netflix Red */
+    --apple-bg: #000000;
+    --glass-bg: rgba(22, 22, 22, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
+    --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --card-radius: 12px;
+    --transition-speed: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --netflix-font: 'Bebas Neue', cursive;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--apple-bg);
+    color: var(--text-primary);
+    font-family: var(--font-stack);
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Ensure vertical scroll is enabled */
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.015em;
+}
+
+body.no-scroll {
+    overflow: hidden !important;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    transition: all var(--transition-speed);
+    height: 64px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.navbar.scrolled {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    padding: 0 4%;
+    height: 100%;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.logo {
+    color: var(--primary-red);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-right: 40px;
+    cursor: pointer;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    flex-grow: 1;
+}
+
+.nav-links li {
+    margin-right: 24px;
+}
+
+.nav-links a {
+    color: #e5e5e5;
+    text-decoration: none;
+    transition: color 0.2s;
+    opacity: 0.8;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    opacity: 1;
+    color: white;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-right i {
+    cursor: pointer;
+    font-size: 1.1rem;
+    color: #e5e5e5;
+    transition: opacity 0.2s;
+}
+
+.nav-right i:hover {
+    opacity: 0.7;
+}
+
+.profile-icon img {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.profile-icon img:hover {
+    transform: scale(1.05);
+}
+
+/* Billboard / Hero */
+.billboard {
+    position: relative;
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 4%;
+    /* Subtle fade in for Hero */
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.billboard-video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.billboard-video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Optional: brighten or dim the video if needed */
+    filter: brightness(0.5);
+}
+
+.billboard-bg {
+    /* Fallback if video fails or for mobile if we chose to hide video */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 60% 50%, rgba(30, 30, 40, 0.4), var(--apple-bg)),
+        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+    z-index: -2;
+    /* Behind the video if both exist, though we replaced it in HTML */
+    filter: brightness(0.6) saturate(1.1);
+    display: none;
+    /* Hide since we are using video */
+}
+
+.billboard-vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, var(--apple-bg) 0%, transparent 60%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.billboard-content {
+    width: 45%;
+    z-index: 10;
+    margin-bottom: 50px;
+    max-width: 600px;
+}
+
+.title-logo h1 {
+    font-size: 4.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -2px;
+    line-height: 1;
+    background: linear-gradient(120deg, #fff, #999);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.role-highlight {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #f5f5f7;
+}
+
+.synopsis {
+    font-size: 1.15rem;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    color: #d2d2d7;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    font-weight: 400;
+}
+
+.btn {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 1rem;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.2s ease-out;
+}
+
+.btn i {
+    margin-right: 12px;
+}
+
+.btn-primary {
+    background-color: white;
+    color: black;
+}
+
+.btn-primary:hover {
+    background-color: rgba(255, 255, 255, 0.85);
+    transform: scale(1.02);
+}
+
+.btn-secondary {
+    background-color: rgba(109, 109, 110, 0.6);
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(109, 109, 110, 0.4);
+    transform: scale(1.02);
+}
+
+/* Rows & Sliders */
+.row {
+    margin: 40px 0;
+    padding-left: 4%;
+    position: relative;
+    z-index: 20;
+}
+
+.row-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #e5e5e5;
+    letter-spacing: -0.5px;
+}
+
+.slider-container {
+    position: relative;
+    height: 240px;
+    /* ample space for hover */
+}
+
+.slider {
+    display: flex;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    gap: 16px;
+    padding: 40px 0;
+    /* space for pop effect */
+    scrollbar-width: none;
+    align-items: center;
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4%;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.slider-container:hover .handle {
+    opacity: 1;
+}
+
+.handle:hover {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Apple-style Cards */
+.card {
+    flex: 0 0 auto;
+    width: 280px;
+    height: 157px;
+    /* 16:9 ratio */
+    background-color: #1c1c1e;
+    border-radius: var(--card-radius);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.4s ease;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover {
+    transform: scale(1.15);
+    /* Less jarring than 1.4 */
+    z-index: 50;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    border-radius: var(--card-radius);
+    /* Keep radius */
+}
+
+.card-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 4px;
+}
+
+.card-meta {
+    font-size: 0.75rem;
+    color: #46d369;
+    /* Match Green */
+    font-weight: 600;
+}
+
+/* Modal - Glassmorphism */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2000;
+    display: none;
+    /* Remove rigid centering to allow scroll */
+    /* align-items: center; */
+    /* justify-content: center; */
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    overflow-y: auto;
+    /* Allow vertical scroll */
+    padding: 40px 0;
+    /* Add vertical breathing room */
+}
+
+.modal-container.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    width: 850px;
+    max-width: 90%;
+    margin: auto;
+    /* Vertically and horizontally center in flex container */
+    background-color: #1c1c1e;
+    border-radius: 16px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    animation: modalPop 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* Ensure it doesn't stick to bottom */
+    margin-bottom: 40px;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.95) translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-banner {
+    width: 100%;
+    height: 400px;
+    background-color: #333;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.modal-vignette {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(to top, #1c1c1e, transparent);
+}
+
+.modal-banner h2 {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    font-size: 3rem;
+    font-weight: 800;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+    letter-spacing: -1px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(30, 30, 30, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+    transition: background 0.2s;
+}
+
+.modal-close:hover {
+    background: rgba(50, 50, 50, 0.9);
+}
+
+.modal-body {
+    padding: 30px 40px;
+    display: flex;
+    gap: 40px;
+    color: #e5e5e5;
+}
+
+.modal-left {
+    flex: 2;
+}
+
+.modal-right {
+    flex: 1;
+}
+
+.modal-meta {
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+#modal-match {
+    color: #46d369;
+    font-weight: 700;
+}
+
+.tag-label {
+    color: #86868b;
+    margin-right: 5px;
+}
+
+#modal-description {
+    line-height: 1.6;
+    font-size: 1.05rem;
+    color: #d2d2d7;
+}
+
+/* Footer */
+.footer {
+    margin-top: 100px;
+    padding: 60px 0;
+    color: #86868b;
+    text-align: center;
+    border-top: 1px solid #333;
+}
+
+.social-links {
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    color: #f5f5f7;
+    margin: 0 15px;
+    font-size: 1.4rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.social-links a:hover {
+    color: var(--primary-red);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .billboard {
+        height: 65vh;
+        align-items: flex-end;
+        padding-bottom: 80px;
+    }
+
+    .billboard-content {
+        width: 90%;
+    }
+
+    .title-logo h1 {
+        font-size: 3rem;
+    }
+
+    .modal-content {
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        overflow-y: scroll;
+    }
+
+    .modal-banner {
+        height: 300px;
+    }
+
+    .modal-body {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    /* Hide links on mobile for now */
+}
+
+/* Netflix Intro Animation */
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 1s ease-in-out;
+}
+
+.netflix-intro-text {
+    display: flex;
+    gap: 2px;
+}
+
+.netflix-intro-text span {
+    color: var(--primary-red);
+    font-size: 6rem;
+    font-weight: 900;
+    font-family: var(--netflix-font);
+    opacity: 0;
+    transform: scale(2);
+    display: inline-block;
+    filter: blur(10px);
+    animation: netflixLetterIntro 0.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+}
+
+/* Staggered animation for each letter */
+.netflix-intro-text span:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.netflix-intro-text span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.netflix-intro-text span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.netflix-intro-text span:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+.netflix-intro-text span:nth-child(5) {
+    animation-delay: 0.6s;
+}
+
+.netflix-intro-text span:nth-child(6) {
+    animation-delay: 0.7s;
+}
+
+.netflix-intro-text span:nth-child(7) {
+    animation-delay: 0.8s;
+}
+
+.netflix-intro-text span:nth-child(8) {
+    animation-delay: 0.9s;
+}
+
+.netflix-intro-text span:nth-child(9) {
+    animation-delay: 1.0s;
+}
+
+@keyframes netflixLetterIntro {
+    0% {
+        opacity: 0;
+        transform: scale(3);
+        filter: blur(20px);
+        letter-spacing: 20px;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+        letter-spacing: -2px;
+    }
+}
+
+.intro-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
