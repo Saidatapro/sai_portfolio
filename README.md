@@ -33,5 +33,4 @@ This project is ready to be hosted on **Vercel**.
 - `resume.html`: Standardized resume view for easy viewing.
 - `profile.jpg`: Your personalized profile picture.
 
----
-Created with ❤️ by Antigravity
+
