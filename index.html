@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Saiteja Boyapati - Portfolio</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="gate.css">
-    <link rel="stylesheet" href="portfolio-refresh.css">
 </head>
 
 <body class="no-scroll">
@@ -95,32 +96,6 @@
             </div>
     </div>
     </header>
-
-    <section class="company-showcase" aria-label="Companies">
-        <h2 class="company-title">Companies I Have Worked With</h2>
-        <div class="company-grid">
-            <article class="company-chip">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png"
-                    alt="American Express logo">
-                <span>American Express</span>
-            </article>
-            <article class="company-chip">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Capital_One_logo.svg/1200px-Capital_One_logo.svg.png"
-                    alt="Capital One logo">
-                <span>Capital One</span>
-            </article>
-            <article class="company-chip">
-                <img src="https://www.mercuryinsurance.com/assets/images/mercury-insurance-logo.svg"
-                    alt="Mercury Insurance logo">
-                <span>Mercury Insurance</span>
-            </article>
-            <article class="company-chip">
-                <img src="https://www.honeywell.com/content/dam/brand/en/images/content-images/brand-identity/logo/hon-corp-brand-1-honeywell-red-logo.png"
-                    alt="Honeywell logo">
-                <span>Honeywell</span>
-            </article>
-        </div>
-    </section>
 
     <!-- Main Content -->
     <main class="main-content">
@@ -272,40 +247,6 @@
     </div>
 
     <script src="script.js"></script>
-    <script>
-        (() => {
-            if (typeof data === "undefined" || !Array.isArray(data.experience)) {
-                return;
-            }
-
-            const officialExperienceLogos = [
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png",
-                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Capital_One_logo.svg/1200px-Capital_One_logo.svg.png",
-                "https://www.mercuryinsurance.com/assets/images/mercury-insurance-logo.svg",
-                "https://www.honeywell.com/content/dam/brand/en/images/content-images/brand-identity/logo/hon-corp-brand-1-honeywell-red-logo.png"
-            ];
-
-            data.experience.forEach((item, index) => {
-                if (officialExperienceLogos[index]) {
-                    item.image = officialExperienceLogos[index];
-                }
-                item.isLogo = true;
-            });
-
-            const experienceCards = document.querySelectorAll("#experience-slider .card");
-            experienceCards.forEach((card, index) => {
-                const imageUrl = officialExperienceLogos[index];
-                if (!imageUrl) {
-                    return;
-                }
-                card.style.backgroundImage = `url('${imageUrl}')`;
-                card.style.backgroundSize = "contain";
-                card.style.backgroundRepeat = "no-repeat";
-                card.style.backgroundPosition = "center";
-                card.style.backgroundColor = "#ffffff";
-            });
-        })();
-    </script>
 </body>
 
 </html>
