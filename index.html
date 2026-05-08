@@ -272,6 +272,40 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        (() => {
+            if (typeof data === "undefined" || !Array.isArray(data.experience)) {
+                return;
+            }
+
+            const officialExperienceLogos = [
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png",
+                "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Capital_One_logo.svg/1200px-Capital_One_logo.svg.png",
+                "https://www.mercuryinsurance.com/assets/images/mercury-insurance-logo.svg",
+                "https://www.honeywell.com/content/dam/brand/en/images/content-images/brand-identity/logo/hon-corp-brand-1-honeywell-red-logo.png"
+            ];
+
+            data.experience.forEach((item, index) => {
+                if (officialExperienceLogos[index]) {
+                    item.image = officialExperienceLogos[index];
+                }
+                item.isLogo = true;
+            });
+
+            const experienceCards = document.querySelectorAll("#experience-slider .card");
+            experienceCards.forEach((card, index) => {
+                const imageUrl = officialExperienceLogos[index];
+                if (!imageUrl) {
+                    return;
+                }
+                card.style.backgroundImage = `url('${imageUrl}')`;
+                card.style.backgroundSize = "contain";
+                card.style.backgroundRepeat = "no-repeat";
+                card.style.backgroundPosition = "center";
+                card.style.backgroundColor = "#ffffff";
+            });
+        })();
+    </script>
 </body>
 
 </html>
