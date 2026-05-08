@@ -7,7 +7,7 @@ const data = {
             description: "<ul><li>Leveraged <strong>LangChain agents</strong> and <strong>BigQuery</strong> to optimize feature engineering (50% faster cycle, 12% accuracy boost).</li><li>Optimized financial ETL with PySpark, reducing costs by 25% and runtime by 40%.</li><li>Architected scalable GCP data platform (BigQuery, Dataproc) for AI/ML.</li><li>Automated MLOps with Cloud Build & Terraform (35% efficiency gain).</li><li>Built real-time ML monitoring dashboards with Dataflow & Looker.</li></ul>",
             tags: ["LangChain", "GCP", "PySpark", "MLOps", "BigQuery"],
             match: "Current",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/1200px-American_Express_logo_%282018%29.svg.png",
+            image: "https://upload.wikimedia.org/wikipedia/commons/f/fa/American_Express_logo_%282018%29.svg",
             isLogo: true
         },
         {
@@ -17,7 +17,7 @@ const data = {
             description: "<ul><li>Integrated RAG system (Llama 3.1) for compliance docs (40% accuracy, 60% time saved).</li><li>Built real-time fraud detection with Kafka & SageMaker.</li><li>Modernized analytics with dbt Core & Snowflake (50% faster self-service).</li><li>Deployed 20+ serverless pipelines on AWS (Step Functions, Glue).</li></ul>",
             tags: ["AWS", "RAG", "Kafka", "SageMaker", "Snowflake"],
             match: "1 Year",
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Capital_One_logo.svg/1200px-Capital_One_logo.svg.png",
+            image: "https://upload.wikimedia.org/wikipedia/commons/9/98/Capital_One_logo.svg",
             isLogo: true
         },
         {
@@ -27,7 +27,7 @@ const data = {
             description: "<ul><li>Implemented secure MPC framework with Python/Sharemind.</li><li>Architected centralized ML feature store on Databricks/Delta Lake.</li><li>Built event-driven services with DynamoDB for real-time portals.</li><li>Automated data validation with Great Expectations (25% reliability boost).</li></ul>",
             tags: ["Databricks", "Python", "AWS Glue", "Privacy Preserving"],
             match: "1.5 Years",
-            image: "assets/mercury.jpg",
+            image: "https://www.mercuryinsurance.com/assets/images/mercury-insurance-logo.svg",
             isLogo: true
         },
         {
@@ -37,7 +37,7 @@ const data = {
             description: "<ul><li>Engineered real-time IoT analytics with Azure Stream Analytics.</li><li>Optimized Hive/Spark workflows for large-scale transformation.</li><li>Built microservices architecture for distributed systems.</li><li>Managed data ingestion to Hadoop via Sqoop.</li></ul>",
             tags: ["Azure", "IoT", "Spark", "NoSQL"],
             match: "2 Years",
-            image: "assets/honeywell.png",
+            image: "https://www.honeywell.com/content/dam/brand/en/images/content-images/brand-identity/logo/hon-corp-brand-1-honeywell-red-logo.png",
             isLogo: true
         }
     ],
